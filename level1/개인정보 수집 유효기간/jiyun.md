@@ -8,77 +8,62 @@ o(N)
 
 # 내용
 
-- 문제 유형(-> mbti)과 선택지 별 얻을 수 있는 점수(->point)를 미리 정의한다.
-- 성격 유형을 산출하기 위해 스코어를 계산할 때 배열을 8자리로 만들지 않고 4자리로 만든 뒤 부호를 보고 유형을 결정한다.
-- test()를 통해 totalScore를 산출하며, getResult()를 통해 totalScore로 부터 성격 유형을 도출한다.
-- test()에서는 문제 유형이 5번째 이상, 즉 +- 부호가 반대로 되어야 하는 문항의 경우 스코어의 부호를 바꾸어 더한다.
+- calculateEndDate()를 통해 만료날짜를 산출하며, checkExpireDate()를 통해 현재 날짜와 비교한다.
+- 변경점
+  - 처음엔 각 함수에서 for문을 이용해 pravacies의 길이만큼 순회했으나, 공통적으로 돌게 되는 부분을 메인 함수로 뽑아서 privacies 길이에 대해 for문을 하나만 돌게 했다.
+  - checkExpireDate를 flag를 사용해 끝까지 로직이 돌게 하지 않고 바로바로 return하도록 했다.
+  - day는 고려할 필요가 없으므로 month에 28을 곱해 계산하지 않는다. (지문의 n일까지 라는 표현은 바꿔 말하면 n+1일부터 만료라는 표현)
 
 # 코드
 
 ```javascript
 function solution(today, terms, privacies) {
-  const expireDateList = calculateEndDate(terms, privacies)
-  const answer = checkExpireDate(today, expireDateList)
-  return answer
-}
-
-const calculateEndDate = (terms, privacies) => {
   const termsList = {}
   for (let i = 0; i < terms.length; i++) {
     const termData = terms[i].split(' ')
     termsList[termData[0]] = Number(termData[1])
   }
-  // { A: '6', B: '12', C: '3' }
-  const expireDateList = []
-  for (let i = 0; i < privacies.length; i++) {
-    const rowData = privacies[i].split(' ') // [ '2021.05.02', 'A' ]
-    const dateList = rowData[0].split('.').map(n => Number(n)) // [ 2019, 1, 1 ]
-    let keepDate = termsList[rowData[1]] * 28
 
-    let date = dateList[2] + keepDate
-    let share = Math.floor(date / 28)
-    let remainder = date % 28
-    if (remainder === 0) {
-      share -= 1
-      remainder += 28
-    }
-    let month = dateList[1]
-    month += share
-    if (month > 12) {
-      const share2 = Math.floor(month / 12)
-      month = month % 12
-      if (month === 0) {
-        share2 -= 1
-        month += 12
-      }
-      dateList[0] += share2
-    }
-    dateList[1] = month
-    dateList[2] = remainder
-    expireDateList[i] = dateList
-  }
-  return expireDateList
-}
-
-const checkExpireDate = (today, expireDateList) => {
-  let answer = []
   const todayList = today.split('.').map(n => Number(n))
-  for (let i = 0; i < expireDateList.length; i++) {
-    let flag = false
-    const expireList = expireDateList[i]
-    if (todayList[0] > expireList[0]) {
-      flag = true
-    } else if (todayList[0] === expireList[0] && todayList[1] > expireList[1]) {
-      flag = true
-    } else if (
-      todayList[0] === expireList[0] &&
-      todayList[1] === expireList[1] &&
-      todayList[2] >= expireList[2]
-    ) {
-      flag = true
+  let answer = []
+  for (let i = 0; i < privacies.length; i++) {
+    const expireDateList = calculateEndDate(termsList, privacies[i])
+    if (checkExpireDate(todayList, expireDateList)) {
+      answer.push(i + 1)
     }
-    if (flag) answer.push(i + 1)
   }
   return answer
+}
+
+const calculateEndDate = (termsList, privacy) => {
+  const [startDate, type] = privacy.split(' ')
+  const dateList = startDate.split('.').map(n => Number(n))
+  let [year, month, date] = dateList
+  const monthAdd = termsList[type] % 12
+  const yearAdd = Math.floor(termsList[type] / 12)
+
+  if (month + monthAdd > 12) {
+    month = month + monthAdd - 12
+    year = year + yearAdd + 1
+  } else {
+    month += monthAdd
+    year += yearAdd
+  }
+  return [year, month, date]
+}
+
+const checkExpireDate = (todayList, expireList) => {
+  if (todayList[0] > expireList[0]) {
+    return true
+  } else if (todayList[0] === expireList[0] && todayList[1] > expireList[1]) {
+    return true
+  } else if (
+    todayList[0] === expireList[0] &&
+    todayList[1] === expireList[1] &&
+    todayList[2] >= expireList[2]
+  ) {
+    return true
+  }
+  return false
 }
 ```
