@@ -19,9 +19,9 @@
 
 - [x] [Level.2] [두 큐 합 같게 만들기](https://school.programmers.co.kr/learn/courses/30/lessons/118667)
 - [x] [Level.1] [성격 유형 검사하기](https://school.programmers.co.kr/learn/courses/30/lessons/118666)
-- [ ] [Level.1] [개인정보 수집 유효기간](https://school.programmers.co.kr/learn/courses/30/lessons/150370)
-- [ ] [Level.2] [이모티콘 할인행사](https://school.programmers.co.kr/learn/courses/30/lessons/150368)
-- [ ] [Level.2] [택배 배달과 수거하기](https://school.programmers.co.kr/learn/courses/30/lessons/150369)
+- [x] [Level.1] [개인정보 수집 유효기간](https://school.programmers.co.kr/learn/courses/30/lessons/150370)
+- [x] [Level.2] [이모티콘 할인행사](https://school.programmers.co.kr/learn/courses/30/lessons/150368)
+- [x] [Level.2] [택배 배달과 수거하기](https://school.programmers.co.kr/learn/courses/30/lessons/150369)
 - [ ] [Level.3] [미로 탈출 명령어](https://school.programmers.co.kr/learn/courses/30/lessons/150365)
 - [ ] [Level.3] [표현 가능한 이진트리](https://school.programmers.co.kr/learn/courses/30/lessons/150367)
 - [ ] [Level.3] [등산코스 정하기](https://school.programmers.co.kr/learn/courses/30/lessons/118669)
