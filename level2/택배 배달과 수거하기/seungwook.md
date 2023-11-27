@@ -23,7 +23,9 @@ public class kakao_택배_배달과_수거하기 {
 		long answer = 0;
 
 		for (int i = n-1; i >= -1; i--) {
-			if (i != n-1 && (deliveries[i+1] != 0 || pickups[i+1] != 0)) { // i번째를 돌았지만 아직 처리할 내용이 남아서 다시 처리해야할 경우
+
+			// i번째 배달과 수거를 했지만 아직 처리할 내용이 남아서 다시 처리해야할 경우 (cap보다 배달, 수거해야할 값이 더 클 경우)
+			if (i != n-1 && (deliveries[i+1] != 0 || pickups[i+1] != 0)) { 
 				i += 1;
 			}
 
@@ -40,13 +42,14 @@ public class kakao_택배_배달과_수거하기 {
 
 			int j = i;
 
-			while (true) { // 해당 deliveries[i], pickups[i]를 해결하고 남은 cap을 처리하기 위해서 while문을 돌아준다. 
+			// 해당 deliveries[i], pickups[i]를 해결하고 남은 cap을 처리하기 위해서 while문을 돌아준다.
+			while (true) {  
 				if (deliveriesCap >= deliveries[j] && pickupsCap >= pickups[j]) { // 배달과 수거를 해도 둘다 cap이 남는경우
 					deliveriesCap -= deliveries[j];
 					pickupsCap -= pickups[j];
 					deliveries[j] = 0;
 					pickups[j] = 0;
-					j--; // j-- 를 통해 남은 cap을 반영하기위해 반복문을 다시 돌아준다.
+					j--; // 남은 cap을 반영하기위해 반복문을 다시 돌아준다.
 				} else if (deliveriesCap >= deliveries[j]) { // 배달 cap이 남는경우
 					deliveriesCap -= deliveries[j];
 					pickups[j] -= pickupsCap;
