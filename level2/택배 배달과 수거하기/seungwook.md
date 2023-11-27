@@ -6,7 +6,7 @@
 - cap을 모두 사용하면 i번째를 기준으로 왔다갔다 했기때문에 answer에 i * 2 한 값을 더해준다.
 - 시간복잡도 : O(N^2)
 
-### 코드
+### 코드 - 1 (17번케이스 시간초과, O(N^2)풀이)
 
 ```java
 
@@ -81,6 +81,50 @@ public class kakao_택배_배달과_수거하기 {
 
 ```
 
-### 결과
+
+### 코드 - 2 (풀이참고, O(N)풀이)
+
+```java
+
+public class kakao_택배_배달과_수거하기2 {
+	public static void main(String[] args) {
+		int cap = 2;
+		int n = 7;
+		int[] deliveries = {1, 0, 2, 0, 1, 0, 2};
+		int[] pickups = {0, 2, 0, 1, 0, 2, 0};
+		System.out.println(solution(cap, n, deliveries, pickups));
+	}
+
+	public static long solution(int cap, int n, int[] deliveries, int[] pickups) {
+		long answer = 0;
+
+		int deliveriesCap = cap;
+		int pickupsCap = cap;
+
+		for (int i = n-1; i >= 0; i--) { // 배열을 맨뒤에 부터 돌아준다.
+			deliveriesCap -= deliveries[i];
+			pickupsCap -= pickups[i];
+
+			while (true) {
+				if (deliveriesCap >= cap && pickupsCap >= cap) {
+					break;
+				}
+				deliveriesCap += cap;
+				pickupsCap += cap;
+				answer += (i + 1);
+			}
+		}
+		return answer * 2;
+	}
+}
+
+```
+
+### 코드-1 결과
 
 ![img.png](seungwook-1.png)
+
+
+### 코드-2 결과
+
+![img.png](seungwook-2.png)
