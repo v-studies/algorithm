@@ -37,13 +37,13 @@ public class kakao_이모티콘_할인행사 {
 		for (int i = 0; i < emoticons.length; i++) {
 			for (int j = 0; j < discountRates.length; j++) {
 				int discount = (int)(emoticons[i] * discountRates[j] * 0.01);
-				discountAmount[i][j] = (emoticons[i] - discount);
+				discountAmount[i][j] = (emoticons[i] - discount); // {{10할인금액, 20할인금액, 30할인금액, 40할인금액}, {10할인금액, 20할인금액, 30할인금액, 40할인금액} ...}
 			}
 		}
 
 		permutation(new int[emoticons.length], 0);
 
-		// cnt가 같을경우네는 amount로 비교하여 내림차순으로 정렬한다.
+		// cnt가 같을경우에는 amount로 비교하여 내림차순으로 정렬한다.
 		resultList.sort(Comparator.comparingInt((Result o) -> o.cnt)
 			.thenComparingInt(o -> o.amount)
 			.reversed());
@@ -74,7 +74,7 @@ public class kakao_이모티콘_할인행사 {
 			int total = 0;
 			for (int j = 0; j < permutationArray.length; j++) {
 				if (usersRate <= permutationArray[j]) { // user가 가지고 있는 rate 이상일 경우 구매한다.
-					int index = permutationArray[j] / 10 - 1; // 할인율이 20 일때 index = 1 에는 할인율 계산한 값이 들어있다.
+					int index = permutationArray[j] / 10 - 1; // 할인율이 20 일때 index = 1에는 할인율 계산한 값이 들어있다.
 					total += discountAmount[j][index]; // 미리 계산한 배열을 활용하여 total을 구한다.
 				}
 			}
