@@ -76,7 +76,7 @@ public static String solution(int n, int m, int x, int y, int r, int c, int k) {
 		Queue<Node> queue = new LinkedList<>();
 		queue.add(new Node(x, y, ""));
 
-		int move = 0;
+		int move = 0; // 시작점에서 얼마나 움직였는지
 		while (!queue.isEmpty()) {
 			move++;
 			Node node = queue.remove();
@@ -86,7 +86,7 @@ public static String solution(int n, int m, int x, int y, int r, int c, int k) {
 				int remainDistance = Math.abs(nx - r) + Math.abs(ny - c); // 두점 사이의 가로 세로 거리 합
 				if (0 < nx && 0 < ny && nx <= n && ny <= m) {
 					// 모든 경우를 돌아보는게 아니라 의미있는 경우만 진행한다.
-					// 1. k에서 이동한값을 뺐을때 남은거리보다 크거나 같을경우에만 진행한다.
+					// 1. k에서 이동한값을 뺐을때 남은거리보다 크거나 같을경우에만 진행한다. -> 남은거리가 더 크다면 문자길이가 k보다 더 길어지기 때문
 					// 2. k에서 이동한값을 빼고 남은거리를 뺐을때 짝수일때 진행한다. -> 짝수여야만 돌아올수 있으므로
 					if (k - move >= remainDistance && (k - move - remainDistance) % 2 == 0) {
 						String result = node.result + dc[i];
