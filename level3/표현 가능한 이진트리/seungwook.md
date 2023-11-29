@@ -56,6 +56,8 @@ public static List<Integer> solution(long[] numbers) {
 
 ```java
 
+static boolean check = false;
+
 public static List<Integer> solution(long[] numbers) {
 		List<Integer> answer = new ArrayList<>();
 
@@ -63,9 +65,10 @@ public static List<Integer> solution(long[] numbers) {
 			check = false;
 			String binaryNumber = Long.toBinaryString(number);
 
-			int level = 1;
-			int nodeCount = 1;
+			int level = 1; // 이진트리 높이 (n)
+			int nodeCount = 1; // 노드 갯수 (2^n - 1)
 
+			// 이진트리 level을 구한다.
 			while (binaryNumber.length() > nodeCount) {
 				level += 1;
 				nodeCount = (int)(Math.pow(2, level) - 1);
@@ -93,17 +96,19 @@ public static List<Integer> solution(long[] numbers) {
 		char[] c = binaryNumber.toCharArray();
 
 		int cnt = 0;
-
+		
 		for (char c1 : c) {
 			if (c1 == '0') {
 				cnt++;
 			}
 		}
 
+		// 1이 한개도 존재하지 않으면 검사할필요x
 		if (cnt == c.length) {
 			return;
 		}
 
+		// 자식을 가지고 있는 부모노드가 0인지 체크
 		if (c[root] == '0') {
 			check = true;
 			return;
