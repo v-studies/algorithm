@@ -32,7 +32,7 @@ class Solution {
 				int nx = i + dx[p];
 				int ny = j + dy[p];
 
-				int remainDistance = Math.abs(nx - r) + Math.abs(ny - c);
+				int minDistance = Math.abs(nx - r) + Math.abs(ny - c);
 
 				if (nx > n || ny > m || nx < 1 || ny < 1)
 					continue;
@@ -40,12 +40,12 @@ class Solution {
 				if (prevD.length() > k)
 					continue;
 
-				if (k - move >= remainDistance && (k - move - remainDistance) % 2 == 0) {
-					String result = prevD + direct[p];
+				if (k - move >= minDistance && (k - move - minDistance) % 2 == 0) {
+					String distance = prevD + direct[p];
 					q.add(new int[] {nx, ny});
-					dq.add(result);
-					if (nx == r && ny == c && k == result.length()) {
-						return result;
+					dq.add(distance);
+					if (nx == r && ny == c && k == distance.length()) {
+						return distance;
 					}
 					break;
 				}
