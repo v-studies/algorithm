@@ -19,30 +19,26 @@ public static List<Integer> solution(int[] fees, String[] records) {
 		int unitAmount = fees[3];
 		int lastTimeMin = 23 * 60 + 59;
 
-		Map<Integer, String> map = new HashMap<>(); // number, time
-		Map<Integer, Integer> resultMap = new HashMap<>(); // number, remainMin
+		Map<Integer, String> map = new HashMap<>(); // carNumber, time
+		Map<Integer, Integer> totalTimeMap = new HashMap<>(); // carNumber, remainMin
 
 		for (String record : records) {
 			String[] split = record.split(" ");
 			String time = split[0];
-			Integer number = Integer.valueOf(split[1]);
-			String parking = split[2];
-			if (parking.equals("IN")) {
-				map.put(number, time);
+			Integer carNumber = Integer.valueOf(split[1]);
+			String status = split[2];
+			if (status.equals("IN")) {
+				map.put(carNumber, time);
 			} else {
-				String inTime = map.get(number);
+				String inTime = map.get(carNumber);
 				Integer inTimeMin = getMinute(inTime);
 				Integer outTimeMin = getMinute(time);
 
 				Integer remainMin = outTimeMin - inTimeMin;
 
 				// resultMap에 존재한다면 이미 계산한 금액이 존재하므로 누적으로 쌓는다.
-				if (resultMap.get(number) == null) {
-					resultMap.put(number, remainMin);
-				} else {
-					resultMap.put(number, resultMap.get(number) + remainMin);
-				}
-				map.remove(number);
+				totalTimeMap.merge(carNumber, remainMin, Integer::sum);
+				map.remove(carNumber);
 			}
 		}
 
@@ -53,19 +49,15 @@ public static List<Integer> solution(int[] fees, String[] records) {
 
 			Integer remainMin = lastTimeMin - inTimeMin;
 
-			if (resultMap.get(number) == null) {
-				resultMap.put(number, remainMin);
-			} else {
-				resultMap.put(number, resultMap.get(number) + remainMin);
-			}
+			totalTimeMap.merge(number, remainMin, Integer::sum);
 		}
 
-		List<Integer> carNumbers = new ArrayList<>(resultMap.keySet());
+		List<Integer> carNumbers = new ArrayList<>(totalTimeMap.keySet());
 		Collections.sort(carNumbers);
 
 		// 주차시간으로 요금계산
 		for (Integer carNumber : carNumbers) {
-			int parkingTime = resultMap.get(carNumber);
+			int parkingTime = totalTimeMap.get(carNumber);
 
 			if (parkingTime <= basicTime) {
 				answer.add(basicAmount);
@@ -93,8 +85,7 @@ public static List<Integer> solution(int[] fees, String[] records) {
 
 	private static Integer getMinute(String inTime) {
 		String[] timeMins = inTime.split(":");
-		Integer timeMin = Integer.valueOf(timeMins[0]) * 60 + Integer.valueOf(timeMins[1]);
-		return timeMin;
+		return Integer.parseInt(timeMins[0]) * 60 + Integer.parseInt(timeMins[1]);
 	}
 
 ```
