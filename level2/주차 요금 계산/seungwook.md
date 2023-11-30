@@ -1,8 +1,8 @@
 ### [Level.2] 주차 요금 계산
 
-- 차량이 'IN' 했을경우 map에 넣어주고 'OUT' 했을경우 주차시간을 계산하여 resultMap에 넣어주고 map에서 제거한다.
-- map에 계속 남아있는 차량은 출차를 안한차량이므로 23:59으로 주차시간을 계산하여 resultMap에 넣어준다.
-- 차량번호순으로 resultMap을 탐색해 주차시간을 비용으로 환산한다.
+- 차량이 'IN' 했을경우 map에 넣어주고 'OUT' 했을경우 주차시간을 계산하여 totalTimeMap에 넣어주고 map에서 제거한다.
+- map에 계속 남아있는 차량은 출차를 안한차량이므로 23:59으로 주차시간을 계산하여 totalTimeMap에 넣어준다.
+- 차량번호순으로 totalTimeMap을 탐색해 주차시간을 비용으로 환산한다.
   - 주차시간이 기본시간보다 작으면 기본요금만 나온다.
   - 주차시간이 기본시간보다 더 크다면 단위시간당 단위요금을 추가하고 나머지값은 올림해준다.
 
@@ -36,7 +36,7 @@ public static List<Integer> solution(int[] fees, String[] records) {
 
 				Integer remainMin = outTimeMin - inTimeMin;
 
-				// resultMap에 존재한다면 이미 계산한 금액이 존재하므로 누적으로 쌓는다.
+				// totalTimeMap에 존재한다면 이미 계산한 금액이 존재하므로 누적으로 쌓는다.
 				totalTimeMap.merge(carNumber, remainMin, Integer::sum);
 				map.remove(carNumber);
 			}
