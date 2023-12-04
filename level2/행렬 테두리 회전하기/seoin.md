@@ -12,7 +12,8 @@
 - tmp 값을 최소값으로 초기화하고, 변경될 값과 비교하여 최소값 정함
 
 ```
-
+# 풀이
+```py
 def solution(rows, columns, queries):
     answer = []
     # table 그리기
@@ -51,3 +52,4 @@ def solution(rows, columns, queries):
         answer.append(min_value)
             
     return answer
+```
