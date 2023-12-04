@@ -12,7 +12,9 @@
 - tmp 값을 최소값으로 초기화하고, 변경될 값과 비교하여 최소값 정함
 
 ```
-# 풀이
+![image](https://github.com/v-studies/algorithm/assets/68271159/df0ed9c7-3bbf-4814-9304-eeb4853abb51)
+
+# 코드
 ```py
 def solution(rows, columns, queries):
     answer = []
