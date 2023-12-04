@@ -1,3 +1,18 @@
+# 문제
+# - [행렬 테두리 회전하기](https://school.programmers.co.kr/learn/courses/30/lessons/77485)
+
+# 내용
+```
+문자열 조작
+1. table 세팅
+2. query for문 실행
+- 인덱스를 조작하기 쉽도록 x1,y1,x2,y2 값을 각각 -1 하고 시작함.
+- 왼쪽 -> 아래 -> 오른쪽 -> 위 순서로 방향에 맞게 그 옆의 값을 덮어씌움
+    - table[y1][x1+1]의 값은 table[y1][x1] 값이 되어야 하는데, 이미 다른 값으로 덮어씌워짐 -> 값 변경 전에 tmp 값을 table[y1][x1]로 지정
+- tmp 값을 최소값으로 초기화하고, 변경될 값과 비교하여 최소값 정함
+
+```
+
 def solution(rows, columns, queries):
     answer = []
     # table 그리기
