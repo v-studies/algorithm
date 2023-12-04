@@ -55,3 +55,8 @@ def solution(rows, columns, queries):
             
     return answer
 ```
+
+참고 ) deque - rotate 사용한 풀이
+1. 일정한 순서대로 순회하며, 변경될 값들(테두리 영역)을 deque에 넣기
+2. deque.rotate`시간복잡도 O(k)` / deque 의 min 값 구하기
+3. 1과 동일한 순서대로, 변경된 값을 대입하기
