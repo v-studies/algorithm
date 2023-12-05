@@ -26,7 +26,7 @@ for (let i = 1; i < targetIndexes.length; i++) {
 <br/>
 <br/>
 
-### 최종 답안 - (1) 시간초과 😢
+### 최종 답안
 
 ```javascript
 function solution(rows, columns, queries) {
