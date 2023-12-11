@@ -24,10 +24,14 @@
 10. [가장 짧은 문자거리](인프런/section_01/가장_짧은_문자거리/code.md)
 11. [문자열 압축](인프런/section_01/문자열_압축/code.md)
 12. [암호](인프런/section_01/암호/code.md)
-</details>
-<details>
-<summary>02. 프로그래머스 </summary>
 
 **section 02 - Array(1차원, 2차원)**
 1. [큰 수 출력하기](인프런/section_02/큰_수_출력하기/code.md)
+2. [보이는 학생](인프런/section_02/보이는_학생/code.md)
+3. [가위 바위 보](인프런/section_02/가위_바위_보/code.md)
+4. [피보나치 수열](인프런/section_02/피보나치_수열/code.md)
+5. [소수 (에라토스테네스 체)](인프런/section_02/소수_에라토스테네스_체/code.md)
+</details>
+<details>
+<summary>02. 프로그래머스 </summary>
 </details>
