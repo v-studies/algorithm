@@ -34,7 +34,7 @@ isSosuArray[1]=false
 
 
 function solution(n, k) {
-    const candidates = jinsu(n,k).split(0).map(num=>parseInt(num))
+   const candidates = jinsu(n,k).split('0').filter(val=> val!=='').map(val=>parseInt(val))
     let answer = 0;
     for (candidate of candidates){
         if (isSosuArray[candidate]) answer +=1
