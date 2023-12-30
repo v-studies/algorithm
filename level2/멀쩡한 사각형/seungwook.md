@@ -1,6 +1,6 @@
 ### Level.2 멀쩡한 사각형
 
-![img.png](images%2Fseungwook_3.png) 
+![seungwook_3.png](images%2Fseungwook_3.png) 
 - 가로길이와 세로길이에 최대공약수 만큼 패턴이 반복된다.
   - 반복되는 패턴의 가로길이는 : w / gcd
   - 반복되는 패턴의 세로길이는 : h / gcd
