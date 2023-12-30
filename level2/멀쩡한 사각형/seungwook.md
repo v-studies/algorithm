@@ -74,4 +74,4 @@ public class 멀쩡한_사각형 {
 
 ### 결과
 
-![img.png](images/seungwook-1.png)
+![img.png](./images/seungwook-1.png)
