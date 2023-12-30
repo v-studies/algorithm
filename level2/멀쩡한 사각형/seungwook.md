@@ -11,7 +11,7 @@
 
 ### 코드 1 (실패)
 
-![img.png](images/seungwook-2.png)
+![img.png](images%2Fseungwook-2.png)
 
 가로 길이와 세로길이중 작은 값 * 2 값이 규칙인거 같아서 풀이 -> 실패
 
