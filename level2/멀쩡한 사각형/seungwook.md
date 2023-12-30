@@ -1,6 +1,6 @@
 ### Level.2 멀쩡한 사각형
 
-![img.png](images/seungwook-3.png) 
+![img.png](images%2Fseungwook_3.png) 
 - 가로길이와 세로길이에 최대공약수 만큼 패턴이 반복된다.
   - 반복되는 패턴의 가로길이는 : w / gcd
   - 반복되는 패턴의 세로길이는 : h / gcd
@@ -11,7 +11,7 @@
 
 ### 코드 1 (실패)
 
-![img.png](images/seungwook-2.png)
+![img.png](images%2Fseungwook_2.png)
 
 가로 길이와 세로길이중 작은 값 * 2 값이 규칙인거 같아서 풀이 -> 실패
 
@@ -74,4 +74,4 @@ public class 멀쩡한_사각형 {
 
 ### 결과
 
-![img.png](./images/seungwook-1.png)
+![img.png](images%2Fseungwook_1.png)
