@@ -5,6 +5,7 @@
 - 사분면의 값이 모두 같은수가 아니면 계속 나눠주고 길이가 1이되면 answer에 더해준다.
 - 만약 길이가 1전에 모두 같은수가 되면 뭉쳐서 하나의 값으로 취급한다.
 
+![img.png](images/seungwook_2.png)
 
 ### 코드
 
@@ -36,6 +37,7 @@ public class 월간코드_쿼드압축_후_개수_세기 {
 	}
 
 	public static void recursive(int[][] arr, int x1, int y1, int x2, int y2, int length, boolean[][] visited) {
+		// 탈출조건
 		if (length == 1) {
 			if (!visited[x1][y1] && arr[x1][y1] == 1) {
 				map.put(1, map.get(1) + 1);
@@ -47,9 +49,11 @@ public class 월간코드_쿼드압축_후_개수_세기 {
 		}
 
 		boolean check = bfs(arr, x1, y1, x2, y2);
+		
+		// 탈출조건
 		if (check) {
 			map.put(arr[x1][y1], map.get(arr[x1][y1]) + 1);
-			for (int i = x1; i < x2; i++) {
+			for (int i = x1; i < x2; i++) { // 방문체크 (방문체크를 안해주면 재귀라서 계속 값이 더해진다)
 				for (int j = y1; j < y2; j++) {
 					visited[i][j] = true;
 				}
@@ -57,6 +61,7 @@ public class 월간코드_쿼드압축_후_개수_세기 {
 			return;
 		}
 
+		// 1,2,3,4 사분면으로 나눠서 재귀
 		recursive(arr, x1, y1, x1 + length/2, y1 + length/2, length/2, visited);
 		recursive(arr, x1, y1 + length/2, x1 + length/2, y2, length/2, visited);
 		recursive(arr, x1 + length/2, y1, x2, y1 + length/2, length/2, visited);
