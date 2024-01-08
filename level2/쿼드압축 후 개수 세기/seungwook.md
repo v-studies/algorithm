@@ -26,9 +26,8 @@ public class 월간코드_쿼드압축_후_개수_세기 {
 		int length = arr.length;
 		map.put(0, 0);
 		map.put(1, 0);
-		boolean[][] visited = new boolean[arr.length][arr.length];
 
-		recursive(arr, 0, 0, length, length, length, visited);
+		recursive(arr, 0, 0, length, length, length);
 
 		answer[0] = map.get(0);
 		answer[1] = map.get(1);
@@ -36,36 +35,30 @@ public class 월간코드_쿼드압축_후_개수_세기 {
 		return answer;
 	}
 
-	public static void recursive(int[][] arr, int x1, int y1, int x2, int y2, int length, boolean[][] visited) {
+	public static void recursive(int[][] arr, int x1, int y1, int x2, int y2, int length) {
 		// 탈출조건
 		if (length == 1) {
-			if (!visited[x1][y1] && arr[x1][y1] == 1) {
+			if (arr[x1][y1] == 1) {
 				map.put(1, map.get(1) + 1);
-			} else if (!visited[x1][y1] && arr[x1][y1] == 0) {
+			} else if (arr[x1][y1] == 0) {
 				map.put(0, map.get(0) + 1);
 			}
-			visited[x1][y1] = true;
 			return;
 		}
 
 		boolean check = bfs(arr, x1, y1, x2, y2);
-		
+
 		// 탈출조건
 		if (check) {
 			map.put(arr[x1][y1], map.get(arr[x1][y1]) + 1);
-			for (int i = x1; i < x2; i++) { // 방문체크 (방문체크를 안해주면 재귀라서 계속 값이 더해진다)
-				for (int j = y1; j < y2; j++) {
-					visited[i][j] = true;
-				}
-			}
 			return;
 		}
 
 		// 1,2,3,4 사분면으로 나눠서 재귀
-		recursive(arr, x1, y1, x1 + length/2, y1 + length/2, length/2, visited);
-		recursive(arr, x1, y1 + length/2, x1 + length/2, y2, length/2, visited);
-		recursive(arr, x1 + length/2, y1, x2, y1 + length/2, length/2, visited);
-		recursive(arr, x1 + length/2, y1 + length/2, x2, y2, length/2, visited);
+		recursive(arr, x1, y1, x1 + length/2, y1 + length/2, length/2);
+		recursive(arr, x1, y1 + length/2, x1 + length/2, y2, length/2);
+		recursive(arr, x1 + length/2, y1, x2, y1 + length/2, length/2);
+		recursive(arr, x1 + length/2, y1 + length/2, x2, y2, length/2);
 	}
 
 	public static boolean bfs(int[][] arr, int x1, int y1, int x2, int y2) {
