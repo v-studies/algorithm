@@ -5,5 +5,8 @@
 *.ipr
 out/
 
+## history
+.history
+
 ### Mac OS ###
 .DS_Store
